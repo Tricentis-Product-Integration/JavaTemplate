@@ -25,32 +25,15 @@ jobs:
           distribution: 'oracle'
           java-version: '22'
 
-      - name: Build Windows
-        if: runner.os =='Windows'
+      - name: Build Jar
         run: mvn package
 
-      - name: Build Non-Windows
-        if: runner.os !='Windows'
-        run: mvn package
-
-      - name: Upload Windows Release Asset
+      - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
-        if: runner.os == 'Windows'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./Rest-API-Template.exe
-          asset_name: Rest-API-Template_Maker_${{ runner.os }}_${{ runner.arch }}.exe
-          asset_content_type: application/octet-stream
-
-      - name: Upload Non-Windows Release Asset
-        uses: actions/upload-release-asset@v1
-        if: runner.os != 'Windows'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./projectRest-API-TemplateMaker
-          asset_name: Rest-API-Template_${{ runner.os }}_${{ runner.arch }}
+          asset_path: ./demo-1.0.0.jar
+          asset_name: RestAPI_${{ runner.os }}_${{ runner.arch }}
           asset_content_type: application/octet-stream
