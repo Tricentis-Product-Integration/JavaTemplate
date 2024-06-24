@@ -1,0 +1,26 @@
+name: Pull Request Builder
+
+# Triggered by pull request to main branch
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - main
+
+# Job Definition
+jobs:
+  # add running tests
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '22'
+      
+      - name: Run tests with Maven
+        run: mvn test
