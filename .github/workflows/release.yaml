@@ -1,0 +1,36 @@
+name: Release
+
+# Trigger on merge to main
+on:
+  release:
+    types: [published]
+
+# Job Definition
+jobs:
+  Release:
+    # run mvn package for ubuntu
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '22'
+
+      - name: Build Jar
+        run: mvn package
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./demo-1.0.0.jar
+          asset_name: RestAPI.jar
+          asset_content_type: application/octet-stream
