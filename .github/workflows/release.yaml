@@ -8,12 +8,9 @@ on:
 # Job Definition
 jobs:
   Release:
-    # run mvn package for windows, linux and mac
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+    # run mvn package for ubuntu
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -22,7 +19,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: 'oracle'
+          distribution: 'temurin'
           java-version: '22'
 
       - name: Build Jar
@@ -35,5 +32,5 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./demo-1.0.0.jar
-          asset_name: RestAPI_${{ runner.os }}_${{ runner.arch }}
+          asset_name: RestAPI
           asset_content_type: application/octet-stream
