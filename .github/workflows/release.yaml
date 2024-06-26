@@ -31,6 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./demo-1.0.0.jar
+          asset_path: ./target/demo-1.0.0.jar
           asset_name: RestAPI.jar
           asset_content_type: application/octet-stream
