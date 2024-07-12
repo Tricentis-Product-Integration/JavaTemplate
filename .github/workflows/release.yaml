@@ -26,11 +26,8 @@ jobs:
         run: mvn package
 
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: Shopify/upload-to-release@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./target/demo-1.0.0.jar
-          asset_name: RestAPI.jar
-          asset_content_type: application/octet-stream
+          name: Rest-API.jar
+          path: ./target/demo-1.0.0.jar
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
