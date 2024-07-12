@@ -26,8 +26,8 @@ jobs:
         run: mvn package
 
       - name: Upload Release Asset
-        uses: Shopify/upload-to-release@v1
+        uses: softprops/action-gh-release@v1
         with:
-          name: Rest-API.jar
-          path: ./target/demo-1.0.0.jar
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          files: "*.nupkg"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
