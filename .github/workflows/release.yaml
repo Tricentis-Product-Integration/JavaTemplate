@@ -8,8 +8,7 @@ on:
 # Job Definition
 jobs:
   Release:
-    # run mvn package for ubuntu
-
+    # package project into jar file
     runs-on: ubuntu-latest
 
     steps:
@@ -25,8 +24,9 @@ jobs:
       - name: Build Jar
         run: mvn package
 
+      # add jar file to release on github
       - name: Upload Release Asset
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: ./target/demo-1.0.0.jar
         env:
