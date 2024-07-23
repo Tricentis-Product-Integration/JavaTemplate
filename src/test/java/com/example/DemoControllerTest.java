@@ -35,20 +35,16 @@ public class DemoControllerTest {
     @MockBean
     private IDemoService demoService;
 
-    DemoItem demoItem1;
-    DemoItem demoItem2;
-
     @BeforeEach
     public void SetUp() {
 
-        demoItem1 = new DemoItem(1, "Item1");
-        demoItem2 = new DemoItem(2, "Item2");
+        DemoItem demoItem1 = new DemoItem(1, "Item1");
+        DemoItem demoItem2 = new DemoItem(2, "Item2");
 
         List<DemoItem> demoItems = new ArrayList<>(Arrays.asList(demoItem1, demoItem2));
 
         Mockito.when(demoService.GetDemoItems()).thenReturn(demoItems);
         Mockito.when(demoService.GetDemoItemById(1)).thenReturn(Optional.of(demoItem1));
-        Mockito.when(demoService.GetDemoItemById(3)).thenReturn(null);
     }
 
     @Test
