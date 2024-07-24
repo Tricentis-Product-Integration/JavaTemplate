@@ -1,30 +1,29 @@
 # Rest API Template using Java
 
-### Uses Java Version 22
+ Uses Java Version 22
 
 ## Included Dependencies
-### - Maven Spring Boot Starter 3.3.1
-### - Maven Spring Boot Starter Web 3.3.1
-### - Maven Spring Boot Starter Test 3.3.1
-- Junit Jupiter
-- Mockito
-- Hamcrest
+ - Spring Boot Starter
+ - Spring Boot Starter Web
+ - Spring Boot Starter Test
+    - Junit Jupiter
+    - Mockito
+    - Hamcrest
+ - Spring Boot Starter JPA
+ - Spring Boot Devtools 
+ - H2 Database
 
-<br/>
 
 ## Included Plugins
-### - Spring Boot Maven Plugin 3.3.1
-### - Maven Surefire Plugin 3.3.0
+ - Spring Boot Maven Plugin
+ - Maven Surefire Plugin
 
-<br/>
 
 ## CI/CD Pipeline
 ### Github Workflow
  - Pull Request: Checkout, Setup Java, and Runs tests when pull request opened to main branch.
  - Release: Checkout, Setup Java, Packages into JAR, and Creates release asset when release is published.
- - SonarQube: Checkout, Setup Java, Cache SonarQube packages, Cache Maven packages, and Build and Analyze
 
-<br/>
 
 ## CreateProject CLI Tool to Create Clone:
 ```
